@@ -1,0 +1,61 @@
+#selectvalue {
+    width: 374px;
+    height: 48px;
+  }
+
+.country__filter {
+    /* position: absolute;  */
+    width: 374px;
+    height: 48px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 121%;
+
+    flex-direction: column;
+    margin-bottom: 50px;
+
+    color: #000000;
+}
+
+.text__filter {
+    position: relative;
+    width: 130px;
+    height: 15px;
+
+/* Заголовок блоков */
+
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 109%;
+/* or 15px */
+
+
+color: #000000;
+}
+
+.price__block{
+    margin-bottom: 20px;
+}
+
+.price {
+    display: flex;
+}
+
+.price__text{
+    height: 21px;
+    margin-top: 10px;
+    margin-right: 10px;
+    
+    /* align-items: center; */
+}
+
+.intup__price {
+    margin-right: 20px;
+    font-size: 22px;
+}
+
+
