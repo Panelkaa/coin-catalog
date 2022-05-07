@@ -30,7 +30,7 @@ class Homepage extends Component {
 
                 <div class="row">
                     <div class="col-md-4">
-                    <div class="card mb-4 box-shadow">
+                    
                     
                         <div class="card-body">
                         <h3 className="card__text"><b>Bullion coins</b></h3>
@@ -39,9 +39,9 @@ class Homepage extends Component {
                         <img class="card-img-top" className="coin__photo" alt="Thumbnail [100%x225]"  src={oneCoin} />     
                         </div>
                     </div>
-                    </div>
+                    
                     <div class="col-md-4">
-                    <div class="card mb-4 box-shadow">
+                    
                     <div class="card-body">
                         <h3 className="card__text"><b>Exclusive coins</b></h3>
                         <div className="allBullion"><a href="#filter">Show all <span>&gt;</span></a></div>
@@ -49,9 +49,9 @@ class Homepage extends Component {
                         <img class="card-img-top" className="coin__photo" alt="Thumbnail [100%x225]"  src={twoCoin} />     
                         </div>
                     </div>
-                    </div>
+                 
                     <div class="col-md-4">
-                    <div class="card mb-4 box-shadow">
+                 
                     <div class="card-body">
                         <h3 className="card__text"><b>Commemorative coins</b></h3>
                         <div className="allBullion"><a href="#filter">Show all <span>&gt;</span></a></div>
@@ -59,7 +59,7 @@ class Homepage extends Component {
                         <img class="card-img-top" className="coin__photo" alt="Thumbnail [100%x225]"  src={threeCoin} />     
                         </div>
                     </div>
-                    </div>
+                
                     
                     </div>
                 </div>  
