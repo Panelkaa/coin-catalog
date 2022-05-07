@@ -54,7 +54,17 @@
         margin-left: 30px;
         height: 49px;
         width: 120px;
-        
+
+        font-family: 'Roboto';
+        background-color: #833AE0;
+
+        font-weight: 400;
+        font-size: 14px;
+        align-items: center;
+        text-align: center;
+
+        color: #FFFFFF;
+                
     }
 
     .filter {
@@ -71,7 +81,11 @@
 
     .card__text {
       position: absolute;
-    }
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 28px;
+          }
 
     .allBullion {
       margin-top: 35px;
@@ -85,6 +99,8 @@
       height: 214px;
       margin-top: 80px;
       margin-left: -150px;
-     
     }
 
+    .card-body {
+
+    }
