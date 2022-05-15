@@ -4,8 +4,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import oneCoin  from '../../images/one_coin.jpg';
 import twoCoin  from '../../images/two_coin.jpg';
 import threeCoin  from '../../images/three_coin.jpg';
+import { Link } from "react-router-dom";
 
 class Description extends Component {
+    state = {
+        status: false,
+    }
+
+    clickStatus = (e) => {
+        this.setState({
+            status: this.state.status === !this.state.status ? !this.state.status : this.state.status
+        })
+        console.log(e.target);
+    }
     render () {
         return(
             <div>
@@ -19,8 +30,16 @@ class Description extends Component {
                             
                             <input type = "text" className="input"/>
                             <button className="search__btn">Search</button>
-                            <div className="filter"><a href="#filter">Advanced filter<span>  ^</span></a></div>
+                            <div className="filter" onClick={this.clickStatus}>
+                            
+                                {!this.state.status ? <Link  to="/Homepage">Advanced filter 	&#8743;</Link> : (
+                                    <Link  to="/Description">Advanced filter 2</Link>
+                                )}
+                                
+                            </div>
                         </div>
+                            {/* <div className="filter">Advanced filter<span>  ^</span></div> */}
+                        
                             {/* <a href="#" class="btn btn-primary my-2 .bg-danger" >Search</a>
                         <button className="search">Search</button> */}
                        

@@ -85,22 +85,16 @@
       font-style: normal;
       font-weight: 500;
       font-size: 28px;
-          }
+      }
 
-    .allBullion {
+    .all__bullion {
       margin-top: 35px;
-      margin-left: 100px;
       position: absolute;
     }
 
-    .coin__photo {
-      position: relative;
+    .card__photo {
+      /* position: relative;  */
       width: 214px;
       height: 214px;
-      margin-top: 80px;
-      margin-left: -150px;
-    }
-
-    .card-body {
-
+      /* margin-left: -90px; */
     }
