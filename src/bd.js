@@ -1,7 +1,16 @@
 const {request} = require('express');
 const express = require('express');
 const app = express();
-const fs = require('fs')
+app.use(express.json()); 
+app.use(express.urlencoded({ extended: true }));
+const fs = require('fs');
+const cors = require("cors")
+app.use(
+  cors({
+    origin: "http://localhost:3000"
+  })
+)
+
 
 
 const mysql = require('mysql2');
@@ -22,24 +31,75 @@ const connection = mysql.createConnection({
   });
 
 
-  app.listen(3000, () => {
+app.listen(3001, () => {
     console.log('Server is started on port 3000');
 });
-app.get('/coin', (req, res) => {
+
+app.get('/Homepage', (req, res) => {
   connection.query('SELECT * FROM coins.coin;', (err, data) => {
       if (err) {
           console.error("Err: ", err);
           return res.status(500)
       } else {
-          console.log(data[0])
-            
-          res.json(data[0]);
-          // console.log(coins)
-            } 
+          // console.log(data)
+          res.json(data);
+
+      } 
 
   });
 });
 
+app.get('/List/Commemorative-coins', (req, res) => {
+  connection.query('SELECT * FROM coins.coin;', (err, data) => {
+      if (err) {
+          console.error("Err: ", err);
+          return res.status(500)
+      } else {
+          const result = data.filter((item) => item.id < 9)
+          console.log(result)
+          // coins.push(result)
+          res.json(result);
+          // console.log(coins)
+          // const coins = res.json(data);
+      } 
+
+  });
+});
+
+app.get('/List/Bullion-coins', (req, res) => {
+  connection.query('SELECT * FROM coins.coin;', (err, data) => {
+      if (err) {
+          console.error("Err: ", err);
+          return res.status(500)
+      } else {
+          const result = data.filter((item) => item.id > 9 && item.id < 21)
+          console.log(result)
+          // coins.push(result)
+          res.json(result);
+          // console.log(coins)
+          // const coins = res.json(data);
+      } 
+
+  });
+});
+
+app.get('/List/Exclusive', (req, res) => {
+  connection.query('SELECT * FROM coins.coin;', (err, data) => {
+      if (err) {
+          console.error("Err: ", err);
+          return res.status(500)
+      } else {
+          const coins = [];
+          const result = data.filter((item) => item.id > 21 )
+          console.log(result)
+          // coins.push(result)
+          res.json(result);
+          // console.log(coins)
+          // const coins = res.json(data);
+      } 
+
+  });
+});
 
 // response.json(data);
 

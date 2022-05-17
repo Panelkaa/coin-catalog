@@ -5,6 +5,7 @@ import oneCoin  from '../../images/one_coin.jpg';
 import twoCoin  from '../../images/two_coin.jpg';
 import threeCoin  from '../../images/three_coin.jpg';
 import { Link } from "react-router-dom";
+import Search from "../Search/Search";
 
 class Description extends Component {
     state = {
@@ -20,31 +21,8 @@ class Description extends Component {
     render () {
         return(
             <div>
-                <section class="jumbotron text-center" >
-                    <div class="container" className="main__div">
-                        <h1 class="jumbotron-heading" className="main__text">Homepage</h1>
-                        <p className="input__text">
-                            <b>Input field</b>
-                        </p>
-                        <div>
-                            
-                            <input type = "text" className="input"/>
-                            <button className="search__btn">Search</button>
-                            <div className="filter" onClick={this.clickStatus}>
-                            
-                                {!this.state.status ? <Link  to="/Homepage">Advanced filter 	&#8743;</Link> : (
-                                    <Link  to="/Description">Advanced filter 2</Link>
-                                )}
-                                
-                            </div>
-                        </div>
-                            {/* <div className="filter">Advanced filter<span>  ^</span></div> */}
-                        
-                            {/* <a href="#" class="btn btn-primary my-2 .bg-danger" >Search</a>
-                        <button className="search">Search</button> */}
-                       
-                   </div>
-               </section> 
+                
+                <Search />
             <div class="container">
             
                 <div class="row">

@@ -1,6 +1,6 @@
 export function Coins () {
     return {
-        type: "COINS",
+        type: "ADD_COINS",
         payload: {
             coins: []
         }

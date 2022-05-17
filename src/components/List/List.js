@@ -7,8 +7,11 @@ import threeCoin  from '../../images/three_coin.jpg';
 import { Link } from "react-router-dom";
 
 class List extends Component {
+    
     state = {
         status: false,
+        bullion: [],
+        commemorative: []
     }
 
     clickStatus = (e) => {
@@ -17,7 +20,36 @@ class List extends Component {
         })
         console.log(e.target);
     }
+
+    componentDidMount() {
+        
+        fetch('http://localhost:3001/List/Bullion-coins') 
+        .then(res => res.json())
+        .then(data => {    
+            console.log(data)
+            const arrCoins = data
+            // bullion.push(...data)
+            this.setState({
+                bullion: arrCoins
+            })
+            console.log('1', ...this.state.bullion)
+        }) 
+        
+        fetch('http://localhost:3001/List/Commemorative-coins') 
+        .then(res => res.json())
+        .then(data => {    
+            const arrCommemorative = data
+            // bullion.push(...data)
+            this.setState({
+                commemorative: arrCommemorative
+            })
+            console.log('2', ...this.state.commemorative)
+        })     
+    }
+    
     render () {
+        console.log('bullion', ...this.state.bullion)
+        console.log('commemorative', ...this.state.commemorative)
         return(
             <div>
                 <section class="jumbotron text-center" >
@@ -41,61 +73,49 @@ class List extends Component {
                                 )}
                                 
                             </div>
-                            {/* <div className="filter"><a href="#filter">Advanced filter<span>  ^</span></a></div> */}
                         </div>
-                            {/* <a href="#" class="btn btn-primary my-2 .bg-danger" >Search</a>
-                        <button className="search">Search</button> */}
+ 
                        
                    </div>
-               </section> 
+               </section>                
             <div class="container">
-                        
+
                 <div class="row">
-                    <div class="col-md-4" className="block">
-                    
-                    
-                        <div class="card-body">
-                        <h3 className="coin__text"><b>Canadian Beaver</b></h3>
-                        <div className="card__description">"Canadian beaver". Unique coin with the image of a beaver. Face value - 5 cents. Created under Elizabeth II.</div>
+                    {this.state.bullion.map((item) =>      
+                        <div class="col-md-4" className="block">
 
-                        <img class="card-img-top" className="coin__photo" alt="Thumbnail [100%x225]"  src={oneCoin} />     
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-4" className="block">
-                    
-                    <div class="card-body">
-                        <h3 className="coin__text"><b>Kennedy</b></h3>
-                        <div className="card__description">The unique coin is made in honor of the assassination of the 35th president of Texas.</div>
+                            <div class="card-body">
+                            <h3 className="coin__text"><b>{item.Title}</b></h3>
+                            <div className="card__description">{item.Main_description}}</div>
 
-                        <img class="card-img-top" className="coin__photo" alt="Thumbnail [100%x225]"  src={twoCoin} />     
+                            <img class="card-img-top" className="coin__photo" alt="Thumbnail [100%x225]"  src={oneCoin} />     
+                            </div>
+                            
                         </div>
-                    </div>
-                   
-                    <div class="col-md-4" className="block">
-                    
-                    <div class="card-body">
-                        <h3 className="coin__text"><b>Looney</b></h3>
-                        <div className="card__description">"Looney". Unique coin with the image of a goat. Canadian dollar symbol.</div>
-                        
-                        <img class="card-img-top" className="coin__photo" alt="Thumbnail [100%x225]"  src={threeCoin} />     
-                        </div>
-                        
-                    </div>
-                    
-                    <div class="col-md-4" className="block">
-                    
-                    <div class="card-body">
-                        <h3 className="coin__text"><b>Looney</b></h3>
-                        <div className="card__description">"Looney". Unique coin with the image of a goat. Canadian dollar symbol.</div>
+                    )}
+                </div> 
+            </div> 
 
-                        <img class="card-img-top" className="coin__photo" alt="Thumbnail [100%x225]"  src={threeCoin} />     
-                        </div>
-                    </div>
+            <div class="container">   
+                <div class="row">
+                    {this.state.commemorative.map((item) => 
+                        <div class="col-md-4" className="block">
 
-                    </div>
-                </div>  
-            </div>
+                            <div class="card-body">
+                            <h3 className="coin__text"><b>{item.Title}</b></h3>
+                            <div className="card__description">{item.Main_description}</div>
+
+                            <img class="card-img-top" className="coin__photo" alt="Thumbnail [100%x225]"  src={oneCoin} />     
+                            </div>
+                            
+                        </div>
+                    )}
+                        </div> 
+
+                
+                </div>
+            </div>  
+            
         )
     }
 }
