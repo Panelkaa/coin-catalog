@@ -32,7 +32,7 @@ const connection = mysql.createConnection({
 
 
 app.listen(3001, () => {
-    console.log('Server is started on port 3000');
+    console.log('Server is started on port 3001');
 });
 
 app.get('/Homepage', (req, res) => {
@@ -49,22 +49,7 @@ app.get('/Homepage', (req, res) => {
   });
 });
 
-app.get('/List/Commemorative-coins', (req, res) => {
-  connection.query('SELECT * FROM coins.coin;', (err, data) => {
-      if (err) {
-          console.error("Err: ", err);
-          return res.status(500)
-      } else {
-          const result = data.filter((item) => item.id < 9)
-          console.log(result)
-          // coins.push(result)
-          res.json(result);
-          // console.log(coins)
-          // const coins = res.json(data);
-      } 
 
-  });
-});
 
 app.get('/List/Bullion-coins', (req, res) => {
   connection.query('SELECT * FROM coins.coin;', (err, data) => {
@@ -83,24 +68,52 @@ app.get('/List/Bullion-coins', (req, res) => {
   });
 });
 
-app.get('/List/Exclusive', (req, res) => {
+app.get('/List/Commemorative-coins', (req, res) => {
   connection.query('SELECT * FROM coins.coin;', (err, data) => {
       if (err) {
           console.error("Err: ", err);
           return res.status(500)
       } else {
-          const coins = [];
-          const result = data.filter((item) => item.id > 21 )
+          const result = data.filter((item) => item.id < 9)
           console.log(result)
           // coins.push(result)
           res.json(result);
-          // console.log(coins)
-          // const coins = res.json(data);
+
       } 
 
   });
 });
 
-// response.json(data);
+app.get('/List/Exclusive-coins', (req, res) => {
+  connection.query('SELECT * FROM coins.coin;', (err, data) => {
+      if (err) {
+          console.error("Err: ", err);
+          return res.status(500)
+      } else {
+          const result = data.filter((item) => item.id > 21 )
+          console.log(result)
+          // coins.push(result)
+          res.json(result);
+
+      } 
+
+  });
+});
+
+app.get('/Coin/:id', (req, res) => {
+  connection.query('SELECT * FROM coins.coin;', (err, data) => {
+      if (err) {
+          console.error("Err: ", err);
+          return res.status(500)
+      } else {
+          const coinID = +req.params.id;
+          console.log(coinID)
+          const result = data.filter((item) => item.id === +req.params.id)
+          console.log(result)
+          res.json(result);
+      } 
+
+  });
+});
 
 

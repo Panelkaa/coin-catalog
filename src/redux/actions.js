@@ -6,3 +6,12 @@ export function Coins () {
         }
     }
 }
+
+export function CoinID () {
+    return {
+        type: "ADD_COIN_ID",
+        payload: {
+            coinId: []
+        }
+    }
+}

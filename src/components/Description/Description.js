@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import "./Description.css"
-import 'bootstrap/dist/css/bootstrap.min.css';
-import oneCoin  from '../../images/one_coin.jpg';
-import twoCoin  from '../../images/two_coin.jpg';
-import threeCoin  from '../../images/three_coin.jpg';
-import { Link } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css'; 
 import Search from "../Search/Search";
 
 class Description extends Component {

@@ -5,14 +5,16 @@ import oneCoin  from '../../images/one_coin.jpg';
 import twoCoin  from '../../images/two_coin.jpg';
 import threeCoin  from '../../images/three_coin.jpg';
 import { Link } from "react-router-dom";
-import Description from "../Description/Description"; 
 import Search from "../Search/Search";
+import store from "../../redux/store";
 
 
-class Homepage extends Component {
+
+
+class Homepage extends Component  {
     
     state = {
-        coins: []
+        coins: [],
     }
 
     clickStatus = (e) => {
@@ -27,25 +29,77 @@ class Homepage extends Component {
         .then(res => res.json())
         .then(data => {    
             const arrCoins = data
-            // arrCoins.push(...data)
             this.setState({
                 coins: arrCoins
             })
-            console.log('DATA', ...arrCoins)
-            
-
+            store.dispatch({
+                type: 'ADD_COINS',
+                payload: {
+                    coins: arrCoins
+                }      
+            })
         }) 
         
     }
     
+    Bullion = () => {
+        fetch('http://localhost:3001/List/Bullion-coins') 
+        .then(res => res.json())
+        .then(data => {    
+            const arrCoins = data
+            this.setState({
+                coins: arrCoins
+            }) 
+            store.dispatch({
+                type: 'ADD_COINS',
+                payload: {
+                    coins: arrCoins
+                }       
+            })       
+        })
+    }
+
+    Commemorative = () => {
+        fetch('http://localhost:3001/List/Commemorative-coins') 
+        .then(res => res.json())
+        .then(data => {    
+            const arrCoins = data
+            this.setState({
+                coins: arrCoins
+            })
+            store.dispatch({
+                type: 'ADD_COINS',
+                payload: {
+                    coins: arrCoins
+                }      
+            })           
+        })
+    }
+
+    Exclusive = () => {
+        fetch('http://localhost:3001/List/Exclusive-coins') 
+        .then(res => res.json())
+        .then(data => {    
+            const arrCoins = data
+            this.setState({
+                coins: arrCoins
+            })
+            store.dispatch({
+                type: 'ADD_COINS',
+                payload: {
+                    coins: arrCoins
+                }      
+            })
+            
+        })
+    }
+
+    
     render () 
     {   
-        // console.log(this.state.coins[22])
-        // console.log(this.state.coins.Price)
-        
-            
         return(         
         <div> 
+
                  <Search />
                  
                  <div class="container">
@@ -53,8 +107,8 @@ class Homepage extends Component {
                          <div class="row">
                              <div class="col-md-4">
                                  <div class="card-body">
-                                     <div> <h3 className="card__text"><b>Canadian Beaver</b></h3> </div>
-                                     <div className="all__bullion"><a href="#filter"><Link to="/List/Bullion-coins">Show all</Link><span>&gt;</span></a></div>
+                                     <div> <h3 className="card__text" title="Canadian Beaver"><b>Canadian Beaver</b></h3> </div>
+                                     <div className="all__bullion"><a href="#filter"><Link to="/List/Bullion-coins" id="1" onClick={this.Bullion}>Show all</Link><span>&gt;</span></a></div>
 
 
                                  </div>
@@ -64,7 +118,7 @@ class Homepage extends Component {
                              <div class="col-md-4">
                                  <div class="card-body">
                                      <h3 className="card__text"><b>Exclusive coins</b></h3>
-                                     <div className="all__bullion"><a href="#filter"><Link to="/List/Exclusive-coins">Show all</Link><span>&gt;</span></a></div>
+                                     <div className="all__bullion"><a href="#filter"><Link to="/List/Exclusive-coins" onClick={this.Exclusive}>Show all</Link><span>&gt;</span></a></div>
 
 
                                  </div>
@@ -75,7 +129,7 @@ class Homepage extends Component {
 
                                  <div class="card-body">
                                      <h3 className="card__text"><b>Commemorative coins</b></h3>
-                                     <div className="all__bullion"><a href="#filter"><Link to="/List/Commemorative-coins">Show all</Link><span>&gt;</span></a></div>
+                                     <div className="all__bullion"><a href="#filter"><Link to="/List/Commemorative-coins" onClick={this.Commemorative}>Show all</Link><span>&gt;</span></a></div>
 
 
                                  </div>

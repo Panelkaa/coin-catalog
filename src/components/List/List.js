@@ -1,18 +1,29 @@
 import React, { Component } from "react";
 import "./List.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import oneCoin  from '../../images/one_coin.jpg';
-import twoCoin  from '../../images/two_coin.jpg';
-import threeCoin  from '../../images/three_coin.jpg';
 import { Link } from "react-router-dom";
+import store from "../../redux/store";
+import Coin from "../Coin/Coin";
 
 class List extends Component {
-    
-    state = {
-        status: false,
-        bullion: [],
-        commemorative: []
+    constructor(props) {
+        super(props);
+        this.state = {
+            status: false,
+            listCoins: [],
+            id: []
+        }
     }
+
+    componentDidMount () {
+        store.subscribe(() => {
+            const state = store.getState();
+            state.arrCoins && this.setState({
+                listCoins: state.arrCoins
+            })     
+        })  
+    }
+    
 
     clickStatus = (e) => {
         this.setState({
@@ -21,35 +32,17 @@ class List extends Component {
         console.log(e.target);
     }
 
-    componentDidMount() {
+    clickTitle = (item) => {
+        console.log(item)
         
-        fetch('http://localhost:3001/List/Bullion-coins') 
-        .then(res => res.json())
-        .then(data => {    
-            console.log(data)
-            const arrCoins = data
-            // bullion.push(...data)
-            this.setState({
-                bullion: arrCoins
-            })
-            console.log('1', ...this.state.bullion)
-        }) 
-        
-        fetch('http://localhost:3001/List/Commemorative-coins') 
-        .then(res => res.json())
-        .then(data => {    
-            const arrCommemorative = data
-            // bullion.push(...data)
-            this.setState({
-                commemorative: arrCommemorative
-            })
-            console.log('2', ...this.state.commemorative)
-        })     
     }
-    
+
     render () {
-        console.log('bullion', ...this.state.bullion)
-        console.log('commemorative', ...this.state.commemorative)
+        console.log("listCoins", this.state.listCoins)
+        
+        // console.log('bullion', ...this.state.bullion)
+        // console.log('commemorative', ...this.state.commemorative)
+        // console.log('exclusive', ...this.state.exclusive)
         return(
             <div>
                 <section class="jumbotron text-center" >
@@ -71,51 +64,29 @@ class List extends Component {
                                 {!this.state.status ? <Link  to="/Description">Advanced filter 	&#8743;</Link> : (
                                     <Link  to="/Description">Advanced filter 2</Link>
                                 )}
-                                
+
                             </div>
                         </div>
- 
-                       
                    </div>
                </section>                
             <div class="container">
 
                 <div class="row">
-                    {this.state.bullion.map((item) =>      
-                        <div class="col-md-4" className="block">
+                    {this.state.listCoins && this.state.listCoins.map((item) =>      
+                        <div class="col-md-4" className="block" >
 
                             <div class="card-body">
-                            <h3 className="coin__text"><b>{item.Title}</b></h3>
-                            <div className="card__description">{item.Main_description}}</div>
+                            <h3 className="coin__text" id={item.id} onClick={() => {this.clickTitle(item)}}><Link  to={`/Coin/${item.id}`}><b>{item.Title}</b></Link></h3>
+                            <div className="card__description">{item.Main_description}</div>
 
-                            <img class="card-img-top" className="coin__photo" alt="Thumbnail [100%x225]"  src={oneCoin} />     
+                            <img class="card-img-top" className="coin__photo" alt="Thumbnail [100%x225]" src= {`/ImagesCoins/${item.image_one}`} />
                             </div>
                             
                         </div>
                     )}
                 </div> 
             </div> 
-
-            <div class="container">   
-                <div class="row">
-                    {this.state.commemorative.map((item) => 
-                        <div class="col-md-4" className="block">
-
-                            <div class="card-body">
-                            <h3 className="coin__text"><b>{item.Title}</b></h3>
-                            <div className="card__description">{item.Main_description}</div>
-
-                            <img class="card-img-top" className="coin__photo" alt="Thumbnail [100%x225]"  src={oneCoin} />     
-                            </div>
-                            
-                        </div>
-                    )}
-                        </div> 
-
-                
-                </div>
-            </div>  
-            
+        </div>      
         )
     }
 }
