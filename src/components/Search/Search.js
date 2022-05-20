@@ -14,10 +14,10 @@ class Search extends Component {
 
     searchLineChangeHandler = (e) => {
         this.setState({ searchLine: e.target.value });
-        console.log(this.state.searchLine)
-       
-     
+        console.log(this.state.searchLine)   
     }
+
+    
 
     render () {
         return(

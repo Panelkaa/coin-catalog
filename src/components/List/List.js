@@ -3,7 +3,6 @@ import "./List.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from "react-router-dom";
 import store from "../../redux/store";
-import Coin from "../Coin/Coin";
 
 class List extends Component {
     constructor(props) {
@@ -11,7 +10,6 @@ class List extends Component {
         this.state = {
             status: false,
             listCoins: [],
-            id: []
         }
     }
 
@@ -22,6 +20,7 @@ class List extends Component {
                 listCoins: state.arrCoins
             })     
         })  
+        
     }
     
 
@@ -34,11 +33,18 @@ class List extends Component {
 
     clickTitle = (item) => {
         console.log(item)
-        
+
+        store.dispatch({
+            type: 'ADD_COIN_ID',
+            payload: {
+                coinId: item.id
+            }      
+        })
+
     }
 
     render () {
-        console.log("listCoins", this.state.listCoins)
+
         
         // console.log('bullion', ...this.state.bullion)
         // console.log('commemorative', ...this.state.commemorative)
@@ -73,10 +79,10 @@ class List extends Component {
 
                 <div class="row">
                     {this.state.listCoins && this.state.listCoins.map((item) =>      
-                        <div class="col-md-4" className="block" >
+                        <div class="col-md-4" className="block" key={item.id}>
 
                             <div class="card-body">
-                            <h3 className="coin__text" id={item.id} onClick={() => {this.clickTitle(item)}}><Link  to={`/Coin/${item.id}`}><b>{item.Title}</b></Link></h3>
+                            <Link  to={`/Coin/${item.id}`}> <h3 className="coin__text"  onClick={() => {this.clickTitle(item)}}><b>{item.Title}</b></h3></Link>
                             <div className="card__description">{item.Main_description}</div>
 
                             <img class="card-img-top" className="coin__photo" alt="Thumbnail [100%x225]" src= {`/ImagesCoins/${item.image_one}`} />

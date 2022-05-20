@@ -99,7 +99,6 @@ class Homepage extends Component  {
     {   
         return(         
         <div> 
-
                  <Search />
                  
                  <div class="container">
@@ -108,7 +107,7 @@ class Homepage extends Component  {
                              <div class="col-md-4">
                                  <div class="card-body">
                                      <div> <h3 className="card__text" title="Canadian Beaver"><b>Canadian Beaver</b></h3> </div>
-                                     <div className="all__bullion"><a href="#filter"><Link to="/List/Bullion-coins" id="1" onClick={this.Bullion}>Show all</Link><span>&gt;</span></a></div>
+                                     <div className="all__bullion"><Link to="/List/Bullion-coins" onClick={this.Bullion}>Show all<span>&gt;</span></Link></div>
 
 
                                  </div>
@@ -118,7 +117,7 @@ class Homepage extends Component  {
                              <div class="col-md-4">
                                  <div class="card-body">
                                      <h3 className="card__text"><b>Exclusive coins</b></h3>
-                                     <div className="all__bullion"><a href="#filter"><Link to="/List/Exclusive-coins" onClick={this.Exclusive}>Show all</Link><span>&gt;</span></a></div>
+                                     <div className="all__bullion"><Link to="/List/Exclusive-coins" onClick={this.Exclusive}>Show all<span>&gt;</span></Link></div>
 
 
                                  </div>
@@ -129,7 +128,7 @@ class Homepage extends Component  {
 
                                  <div class="card-body">
                                      <h3 className="card__text"><b>Commemorative coins</b></h3>
-                                     <div className="all__bullion"><a href="#filter"><Link to="/List/Commemorative-coins" onClick={this.Commemorative}>Show all</Link><span>&gt;</span></a></div>
+                                     <div className="all__bullion"><Link to="/List/Commemorative-coins" onClick={this.Commemorative}>Show all<span>&gt;</span></Link></div>
 
 
                                  </div>

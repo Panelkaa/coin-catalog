@@ -1,6 +1,6 @@
 const initialState = {
     arrCoins: [],
-    idCoin: [],
+    idCoin: []
 }
 
 function reducer(state = initialState, action) {
@@ -9,17 +9,16 @@ function reducer(state = initialState, action) {
             const arrCoins = action.payload.coins
             console.log("BOOOOOOOOOB",...arrCoins)
             return {
-                ...state,arrCoins
+                arrCoins: arrCoins
             }
-        case 'ADD_COIN_ID':
-            const coinId = [...state.arrCoins];
-            const newArray =  coinId.filter(item => item.id !== action.payload.coinId)
-            console.log("IDDDDDDDD",...newArray)
-    
+        case 'ADD_COIN_ID':       
+            const idCoin = action.payload.coinId;
+            // const newArray =  coinId.filter(item => item.id !== action.payload.coin_Id)
+            console.log("IDDDDDDDD",idCoin)
             return {
-                ...state,
-                idCoin: newArray    
+                idCoin : idCoin
             }    
+            
      
         default:
             return state;  
