@@ -23,7 +23,7 @@ class Coin  extends Component  {
         })
         console.log(e.target);
     }
-    componentDidMount() {
+    async componentDidMount() {
         // store.subscribe(() => {
         //     const state = store.getState();
         //     console.log(state)
@@ -34,12 +34,15 @@ class Coin  extends Component  {
         // console.log("eee",this.state.id)
 
 
-        fetch(`http://localhost:3001/Coin/${this.state.id}`)
+        await fetch(`http://localhost:3001/Coin/${this.state.id}`)
         .then(res => res.json())
         .then(data => {    
             console.log(...data)
-            this.setState({
-                coinId: data
+            this.setState((previousState) => {
+                return {
+                    ...previousState,
+                    coinId: data
+                }
             })
            
             console.log("not Click",this.state.coinId)

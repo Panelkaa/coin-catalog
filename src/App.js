@@ -3,7 +3,7 @@ import Homepage from "./components/Homepage/Homepage"
 import Description from "./components/Description/Description"
 import List from "./components/List/List"
 import Coin from "./components/Coin/Coin"
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 
 
