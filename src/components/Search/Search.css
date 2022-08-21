@@ -1,31 +1,88 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400;1,700;1,900&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,100;1,300&display=swap');
+
 :root {
-    --jumbotron-padding-y: 3rem;
-  }
-  
+  --jumbotron-padding-y: 3rem;
+}
+
+.jumbotron {
+  padding-top: var(--jumbotron-padding-y);
+  padding-bottom: var(--jumbotron-padding-y);
+  margin-bottom: 0;
+  background-color: #fff;
+}
+
+@media (min-width: 768px) {
   .jumbotron {
-    padding-top: var(--jumbotron-padding-y);
-    padding-bottom: var(--jumbotron-padding-y);
-    margin-bottom: 0;
-    background-color: #fff;
+    padding-top: calc(var(--jumbotron-padding-y) * 2);
+    padding-bottom: calc(var(--jumbotron-padding-y) * 2);
   }
-  @media (min-width: 768px) {
-    .jumbotron {
-      padding-top: calc(var(--jumbotron-padding-y) * 2);
-      padding-bottom: calc(var(--jumbotron-padding-y) * 2);
-    }
-  }
-  
-  .jumbotron p:last-child {
-    margin-bottom: 0;
-  }
-  
-  .jumbotron-heading {
-    font-weight: 300;
-  }
-  
-  .jumbotron .container {
-    max-width: 10rem;
-  }
-  
-  .box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+}
+
+.jumbotron p:last-child {
+  margin-bottom: 0;
+}
+
+.jumbotron-heading {
+  font-weight: 300;
+}
+
+/* .jumbotron .container {
+  max-width: 10rem;
+} */
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+.card-body {
+  /* position: absolute; */
+  width: 224px;
+  height: 95px;
+}
+
+.coin__photo {
+  width: 120px;
+  height: 120px;
+  margin-top: 0px;
+}
+
+.coin__text {
+  position: absolute;
+  margin-left: 200px;
+}
+
+.card__description {
+  position: absolute;
+  margin-top: 35px;
+  margin-left: 200px;
+  width: 270px;
+  text-align: left;
+}
+
+.block {
+  width: 500px;
+  /* padding: 30px; */
+  /* border: 2px solid red; */
+  display: inline-block;
+  margin: 10px;
+  margin-bottom: 90px;
+  margin-right: 150px;
+}
+
+.link__text {
+  /* position: absolute; */
+  margin-left: -390px;
+  margin-bottom: 5px;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 109%;
+  /* or 11px */
+
+  text-decoration-line: underline;
+
+  color: #B1ABAB;
+
+}

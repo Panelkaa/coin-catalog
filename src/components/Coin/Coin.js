@@ -24,16 +24,6 @@ class Coin  extends Component  {
         console.log(e.target);
     }
     async componentDidMount() {
-        // store.subscribe(() => {
-        //     const state = store.getState();
-        //     console.log(state)
-        //     state.idCoin && this.setState({
-        //         id: state.idCoin
-        //     })            
-        // })  
-        // console.log("eee",this.state.id)
-
-
         await fetch(`http://localhost:3001/Coin/${this.state.id}`)
         .then(res => res.json())
         .then(data => {    
@@ -44,54 +34,35 @@ class Coin  extends Component  {
                     coinId: data
                 }
             })
-           
-            console.log("not Click",this.state.coinId)
         }) 
-        
-        
+ 
     }
 
-    //CLICK
-        // click = () => {
-        // fetch(`http://localhost:3001/Coin/${this.state.id}`)
-        // .then(res => res.json())
-        // .then(data => {    
-        //     console.log(...data)
-        //     // const arrCoins = data
-        //     this.setState({
-        //         coinId: data
-        //     })   
-        //     console.log("Click",...this.state.coinId)
-        // }) 
-        // }
     render () 
-    {   
+    {   console.log("state",...this.state.coinId)
+    
         return(     
         <div>
          
          <div className="coin">
+         {this.state.coinId.map((item) => 
                 <div className="coin_des">
                 {/* <button onClick={this.click}>4</button> */}
-                {/* {this.state.coinId.map((item) => { */}
-
-                    
-
+                
                     <div className="row">
                         
                     <div>
-                        <img class="card-img-top" className="coin__photo-one" alt="Thumbnail [100%x225]" src={oneCoin} />
-                        <img class="card-img-top" className="coin__photo-teo" alt="Thumbnail [100%x225]" src={oneCoin} />
+                        <img class="card-img-top" className="coin__photo-one" alt="Thumbnail [100%x225]"  src= {`/ImagesCoins/${item.image_one}`} />
+                        <img class="card-img-top" className="coin__photo-teo" alt="Thumbnail [100%x225]"  src= {`/ImagesCoins/${item.image_two}`} />
                     </div>
                        
                         
                             <div className="description">   
-                                 <h3 className="title"><b>Canadian beaver</b></h3>
-                                <div className="description__text">"Canadian beaver". Unique coin with the image of a beaver. Face value - 5 cents. Created under Elizabeth II.
-                                <p>
-                                In the center of the obverse is a portrait of Queen Elizabeth II, the profile is directed to the right. The inscription on the left semicircle (English) ELIZABETH II, on the right semicircle D · G · REGINA (ELIZABETH II QUEEN by the Grace of GOD) with dots. Below is a mint mark.
-                                </p>
-                                In the center of the coin reverse is a Canadian beaver on a rock sticking out of the water. At the top is a semicircle with the inscription "5 cents" between two maple leaves. At the bottom in two lines is the inscription CANADA (CANADA) and the year of minting.
-                            </div>
+                                 <h3 className="title"><b>{item.Title}</b></h3>
+                                <div className="description__text">
+                                    {item.Main_description}
+                                    <p className="description__text"> {item.Description}</p>
+                                </div>
                             <div>
                                 <table className="one_block">
                                     <tbody>
@@ -100,7 +71,7 @@ class Coin  extends Component  {
                                                 Issuing Country
                                             </th>
                                             <th className="white">
-                                                CANADA
+                                                {item.Country}
                                             </th>
                                         </tr>
                                         <tr>
@@ -109,7 +80,7 @@ class Coin  extends Component  {
                                                 Composition
                                             </th>
                                             <th className="gray">
-                                                Nickel
+                                            {item.Composition}
                                             </th>
                                         </tr>
                                         <tr>
@@ -117,7 +88,7 @@ class Coin  extends Component  {
                                                 Quality
                                             </th>
                                             <th className="white">
-                                                BU
+                                                {item.Quality}
                                             </th>
                                         </tr>
                                         <tr>
@@ -125,7 +96,7 @@ class Coin  extends Component  {
                                                 Denomination
                                             </th>
                                             <th className="gray">
-                                                5 cents
+                                                {item.Denomination}
                                             </th>
                                         </tr>
                                         <tr>
@@ -133,7 +104,7 @@ class Coin  extends Component  {
                                                 Year
                                             </th>
                                             <th className="white">
-                                                1965    
+                                                {item.Year}  
                                             </th>
                                         </tr>
                                         <tr>
@@ -141,7 +112,7 @@ class Coin  extends Component  {
                                                 Weight
                                             </th>
                                             <th className="gray">
-                                                4.54 g
+                                                {item.Weight}
                                             </th>
                                         </tr>
                                         <tr>
@@ -149,7 +120,7 @@ class Coin  extends Component  {
                                                 Price
                                             </th>
                                             <th className="white">
-                                                40$
+                                                {item.Price}
                                             </th>
                                         </tr>
                                     
@@ -158,15 +129,16 @@ class Coin  extends Component  {
                                     </div> 
                                         <Link  to="/Homepage" className="back">Back to the list</Link>  
                                     </div> 
-                            </div>   
-                   {/* })}     */}
-                    </div>  
-                           
-            </div>         
+                                      
+                            </div>     
+                    </div>    
+               )}               
+            </div>  
+                    
         </div>
             
         
-    )}}
-                                 
+    )}   
+}                             
 
 export default Coin;

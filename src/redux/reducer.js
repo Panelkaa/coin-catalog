@@ -1,6 +1,6 @@
 const initialState = {
     arrCoins: [],
-    idCoin: []
+    idCoin: [],
 }
 
 function reducer(state = initialState, action) {
@@ -17,8 +17,8 @@ function reducer(state = initialState, action) {
             console.log("IDDDDDDDD",idCoin)
             return {
                 idCoin : idCoin
-            }    
-            
+            }   
+ 
      
         default:
             return state;  
